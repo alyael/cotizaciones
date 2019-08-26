@@ -13,6 +13,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <a class="dropdown-item" href="{{ route('QuotationIndex') }}">Cotizacion</a>
+            <a class="dropdown-item" href="{{ route('QuotationGetIndex') }}">API Cotizacion</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">--</h6>
         </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Erp\Cotizacion\QuotationStoreRequest;
 use App\Model\TypeCenterCost;
 use App\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class QuotationController extends Controller
@@ -18,6 +19,12 @@ class QuotationController extends Controller
     {
         $this->middleware('auth');
         $this->repository = $repository;
+    }
+
+    public function getIndex()
+    {
+        $contractView = $this->repository->contractQueryView($arrayData=0);
+        return $contractView;
     }
 
     public function index()

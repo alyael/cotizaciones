@@ -16,7 +16,8 @@
         "barryvdh/laravel-dompdf": "^0.8.4",
         "nesbot/carbon": "1.*",
         "ext-json": "*",
-        "ext-zip": "*"
+        "ext-zip": "*",
+        "ext-http": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

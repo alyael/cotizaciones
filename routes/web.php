@@ -33,6 +33,7 @@ Route::middleware(['auth'])
 
         // Rutas para controlar la creacion de Cotizaciones
         Route::get('/index',                          'QuotationController@index')->name('QuotationIndex');
+        Route::get('/getIndex',                       'QuotationController@getIndex')->name('QuotationGetIndex');
         Route::post('/store',                         'QuotationController@store')->name('QuotationStore');
         Route::post('/destroy',                       'QuotationController@destroy')->name('QuotationDestroy');
 
