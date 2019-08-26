@@ -64,7 +64,7 @@
                                 </form>
 
                             </td>
-                            <td><button type="button" class="btn btn-dark btn-sm"> <i class="far fa-file-pdf"></i></button></td>
+                            <td><a href="{{ route('QuotationPdfIndex',["id"=>$data['id']]) }}" target="_blank"><button type="button" class="btn btn-dark btn-sm"> <i class="far fa-file-pdf"></i></button></a></td>
 
                         </tr>
                     @endforeach

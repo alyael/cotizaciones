@@ -49,3 +49,13 @@ Route::middleware(['auth'])
 
     });
 
+Route::middleware(['auth'])
+    ->prefix('Pdf/Cotizacion')
+    ->namespace('Pdf\Cotizacion')
+    ->group(function() {
+
+        //Rutas para controlar la adicion de productos a las cotizaciones
+        Route::get('/{id}/cotizacion',                     'PdfQuotationController@request')->name('QuotationPdfIndex');
+
+    });
+
