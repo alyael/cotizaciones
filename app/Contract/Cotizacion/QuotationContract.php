@@ -61,8 +61,8 @@ class QuotationContract implements Quotation
 
         $response = call_user_func (function () use($arrayData){
 
-            if( ! is_null(View::viewPoll($arrayData))){
-                return View::viewPoll($arrayData);
+            if($arrayData['typeInput']=='deleteQuotation') {
+                return QueryDelete::delete($arrayData);
             }
             return null;
 

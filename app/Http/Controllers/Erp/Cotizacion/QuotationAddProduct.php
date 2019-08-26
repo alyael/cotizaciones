@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Erp\Cotizacion;
 
-use App\Contract\Cotizacion\Quotation;
 use App\Contract\Cotizacion\QuotationContract;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Erp\Cotizacion\QuotationStoreRequest;
-use App\Model\TypeCenterCost;
-use App\User;
 use Illuminate\Http\Request;
 
-class QuotationController extends Controller
+class QuotationAddProduct extends Controller
 {
+
     protected $repository;
 
     public function __construct(QuotationContract $repository)
@@ -20,10 +17,12 @@ class QuotationController extends Controller
         $this->repository = $repository;
     }
 
-    public function index()
+    public function index($id)
     {
-        $contractView = $this->repository->contractQueryView($arrayData=0);
-        return view('Erp/Cotizacion/index',compact('contractView'));
+        $arrayData = array_merge(["id"=>$id]);
+        $contractView = $this->repository->contractQueryView($arrayData);
+        //dd($contractView);
+        return view('Erp/Cotizacion/CotizacionAddProduct/index',compact('contractView'));
     }
 
     public function create()
@@ -31,7 +30,7 @@ class QuotationController extends Controller
         //
     }
 
-    public function store(QuotationStoreRequest $request)
+    public function store(Request $request)
     {
         $arrayData = $request->all();
         $contractView = $this->repository->contractQueryInsert($arrayData);
@@ -40,7 +39,7 @@ class QuotationController extends Controller
 
     public function show($id)
     {
-
+        //
     }
 
     public function edit($id)
@@ -53,10 +52,8 @@ class QuotationController extends Controller
         //
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $arrayData = $request->all();
-        $contractView = $this->repository->contractQueryDelete($arrayData);
-        return back()->with('success','Item created successfully!');
+        //
     }
 }

@@ -3,67 +3,77 @@
 @section('content')
 
 
-            <div class="mb-3">
-                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#newCot">
-                    Nueva Cotizacion
-                </button>
+    <div class="mb-3">
+        <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#newCot">
+            Nueva Cotizacion
+        </button>
+    </div>
+
+
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Lista de Cotizaciones
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>idCotizacion</th>
+                        <th>idCliente</th>
+                        <th>NombreCliente</th>
+                        <th>Status</th>
+                        <th>Fecha</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>idCotizacion</th>
+                        <th>idCliente</th>
+                        <th>NombreCliente</th>
+                        <th>Status</th>
+                        <th>Fecha</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    @foreach( $contractView['listQuotation'] as $data )
+                        <tr>
+
+                            <td>{{ $data['id'] }}</td>
+                            <td>{{ $data['client_id'] }}</td>
+                            <td>{{ $data['nameClient'] }}</td>
+                            <td>Pendiente</td>
+                            <td>{{ $data['created_at'] }}</td>
+                            <td><a href="{{ route('QuotationAddProductIndex', [ "id"=>$data['id'] ]) }}"><button type="button" class="btn btn-primary btn-sm"> agregarProductos</button></a></td>
+                            <td>
+
+                                <form method="post" action="{{ route('QuotationDestroy') }}" autocomplete="off">
+                                    @csrf
+                                    <input type="hidden" name="typeInput" value="deleteQuotation">
+                                    <input type="hidden" name="typeDelete" value="QuotationDelete">
+                                    <input type="hidden" name="id" value="{{ $data['id'] }}">
+                                    <button type="submit" class="btn btn-warning btn-sm"> Cancelar</button>
+                                </form>
+
+                            </td>
+                            <td><button type="button" class="btn btn-dark btn-sm"> <i class="far fa-file-pdf"></i></button></td>
+
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-
-
-            <!-- DataTables Example -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fas fa-table"></i>
-                    Row Cotizaciones
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                            <tr>
-                                <th>idCliente</th>
-                                <th>NombreCliente</th>
-                                <th>Status</th>
-                                <th>Fecha</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>idCliente</th>
-                                <th>NombreCliente</th>
-                                <th>Status</th>
-                                <th>Fecha</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </tfoot>
-                            <tbody>
-                            @foreach( $contractView['listQuotation'] as $client )
-                            <tr>
-
-                                <td>{{ $client['id'] }}</td>
-                                <td>{{ $client['client_id'] }}</td>
-                                <td>Pendiente</td>
-                                <td>{{ $client['created_at'] }}</td>
-                                <td><button type="button" class="btn btn-primary btn-sm"> Edit</button></td>
-                                <td><button type="button" class="btn btn-warning btn-sm"> Cancelar</button></td>
-                                <td><button type="button" class="btn btn-dark btn-sm"> <i class="far fa-file-pdf"> <i class="fas fa-download"></i></i></button></td>
-                                <td><button type="button" class="btn btn-dark btn-sm"> <i class="far fa-file-pdf"> <i class="fas fa-envelope-square"></i></i></button></td>
-
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
 
 
     <!-- Modal -->
@@ -88,8 +98,8 @@
                             <select class="form-control" name="client_id">
                                 <option></option>
                                 @foreach ( $contractView['userClientQuotation'] as $client )
-                                <option value="{{ $client['id'] }}">{{ $client['name'] }}</option>
-                                    @endforeach
+                                    <option value="{{ $client['id'] }}">{{ $client['name'] }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">

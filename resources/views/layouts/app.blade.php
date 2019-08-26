@@ -39,6 +39,8 @@
                 </li>
                 <li class="breadcrumb-item active">{{ Request::path() }}</li>
             </ol>
+            @include('errors.error')
+            @include('errors.flash-message')
     @yield('content')
         </div>
         <!-- /.container-fluid -->

@@ -11,6 +11,6 @@ class QuotationDetail extends Model
 
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'quotation_id','product_id'
+        'quotation_id','product_id','quantity'
     ];
 }

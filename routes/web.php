@@ -30,7 +30,22 @@ Route::middleware(['auth'])
     ->prefix('Erp/Cotizacion')
     ->namespace('Erp\Cotizacion')
     ->group(function() {
+
+        // Rutas para controlar la creacion de Cotizaciones
         Route::get('/index',                          'QuotationController@index')->name('QuotationIndex');
-        Route::post('/store',                          'QuotationController@store')->name('QuotationStore');
+        Route::post('/store',                         'QuotationController@store')->name('QuotationStore');
+        Route::post('/destroy',                       'QuotationController@destroy')->name('QuotationDestroy');
+
+    });
+
+Route::middleware(['auth'])
+    ->prefix('Erp/Cotizacion/CotizacionAddProduct')
+    ->namespace('Erp\Cotizacion')
+    ->group(function() {
+
+        //Rutas para controlar la adicion de productos a las cotizaciones
+        Route::get('/{id}/index',                     'QuotationAddProduct@index')->name('QuotationAddProductIndex');
+        Route::post('/store',                         'QuotationAddProduct@store')->name('QuotationAddProductStore');
+
     });
 
